@@ -338,7 +338,7 @@ def extract_coordinates_from_pose_3x1( pose , selection = [] ,
 
 '''Main'''
 if __name__ == "__main__":
-    print "Iniciando Rosetta...\n"
+    print "Starting Rosetta...\n"
     rosetta.init()
     p = Pose()
     print "> Opening the PDB file...\n"
