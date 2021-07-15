@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from rosetta import *
-from toolbox import cleanATOM
+from pyrosetta import *
+#from toolbox import cleanATOM
+import pyrosetta.toolbox
 from math import sqrt
 import sys
 from random import randrange, choice
@@ -64,7 +65,7 @@ def calc_energies():
             p.set_psi(r+1,float( conformations[c][r].psi ))
         xyz = extract_coordinates_from_pose_3x1(p)
         natoms = len(xyz[0])
-        for i in range(natoms):  #in range(390):
+        for i in range(natoms):
             list_atoms[i].x = xyz[0][i]
             #print "X: "+str(list_atoms[i].x)
             list_atoms[i].y = xyz[1][i]
@@ -183,7 +184,7 @@ def execute():
         cal_model()
         print "> Generating new population by model...\n"
         create_conformations_by_model(sequence)
-        #print_file(i)
+        print_file(i)
     return
 
 def open_file(nome_arquivo):
@@ -339,12 +340,12 @@ def extract_coordinates_from_pose_3x1( pose , selection = [] ,
 '''Main'''
 if __name__ == "__main__":
     print "Starting Rosetta...\n"
-    rosetta.init()
+    pyrosetta.init()
     p = Pose()
     print "> Opening the PDB file...\n"
-    pose_from_pdb(p,"1A11.clean.pdb")
+    p  = pose_from_pdb("1A11.clean.pdb")
     print "> Opening the XYZ file...\n"
-    open_file(str("1A11.xyz"))
+    open_file(str("1a11.xyz"))
     print "> Identifying dihedral angles...\n"
     create_sequence()
     print "> Creating random conformations...\n"
